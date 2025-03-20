@@ -54,7 +54,7 @@ script = ExtResource("1_vcrk3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer"]
 z_index = 1
-position = Vector2(580, 303)
+position = Vector2(580, 358)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_k3l8s")
 animation = &"red"

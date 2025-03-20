@@ -1,7 +1,20 @@
 {
-	"small_fish": {
-		"name": "Small Fish",
+	"button": {
+		"name": "a Button",
 		"value": 5,
-		"minigame": "res://scenes/Minigames/ReactionMinigame.tscn"
-	}
+		"minigame": "res://scenes/Minigames/ReactionMinigame.tscn",
+		"weight": 1
+	},
+	"mouse": {
+		"name": "a Mouse",
+		"value": 8,
+		"minigame": "res://scenes/Minigames/ButtonSmashMinigame.tscn",
+		"weight": 1
+	}, 
+	"arrows": {
+		"name": "a bunch of Arrows",
+		"value": 11,
+		"minigame": "res://scenes/Minigames/RythmMinigame.tscn",
+		"weight": 1
+	},
 }

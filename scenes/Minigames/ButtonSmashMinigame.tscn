@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0okmlm7bvfqy"]
+
+[ext_resource type="Script" path="res://scripts/Minigames/ButtonSmashMinigame.gd" id="1_wdhk2"]
+[ext_resource type="Texture2D" uid="uid://bacgpf7luxd1w" path="res://assets/mouse.png" id="2_8etgl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yd082"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="ButtonSmashMinigame" type="Node2D"]
+script = ExtResource("1_wdhk2")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yd082")
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(576, 311)
+scale = Vector2(5, 5)
+texture = ExtResource("2_8etgl")
+
+[node name="TargetLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -41.5
+offset_top = 99.0
+offset_right = 41.5
+offset_bottom = 122.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "PRESS WHEN IT'S GREEN"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="TimerLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -186.5
+offset_top = 44.0
+offset_right = 186.5
+offset_bottom = 89.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "PRESS WHEN IT'S GREEN"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ClicksLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -186.5
+offset_top = 520.0
+offset_right = 186.5
+offset_bottom = 565.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "PRESS WHEN IT'S GREEN"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true

@@ -1,0 +1,214 @@
+[gd_scene load_steps=20 format=3 uid="uid://lvy11ptqadlc"]
+
+[ext_resource type="Script" path="res://scripts/Minigames/RythmMinigame.gd" id="1_v5l17"]
+[ext_resource type="Texture2D" uid="uid://b1qqfrw4wiymn" path="res://assets/arrows.png" id="2_gpd86"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yd082"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdsu3"]
+atlas = ExtResource("2_gpd86")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xd6ol"]
+atlas = ExtResource("2_gpd86")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3srlm"]
+atlas = ExtResource("2_gpd86")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u56g1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdsu3")
+}],
+"loop": true,
+"name": &"blue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xd6ol")
+}],
+"loop": true,
+"name": &"green",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3srlm")
+}],
+"loop": true,
+"name": &"red",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kuc1w"]
+atlas = ExtResource("2_gpd86")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ol0vj"]
+atlas = ExtResource("2_gpd86")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwvq2"]
+atlas = ExtResource("2_gpd86")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8xnm5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kuc1w")
+}],
+"loop": true,
+"name": &"blue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ol0vj")
+}],
+"loop": true,
+"name": &"green",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwvq2")
+}],
+"loop": true,
+"name": &"red",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmgjj"]
+atlas = ExtResource("2_gpd86")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1dypb"]
+atlas = ExtResource("2_gpd86")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_whrv8"]
+atlas = ExtResource("2_gpd86")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v4inp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vmgjj")
+}],
+"loop": true,
+"name": &"blue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1dypb")
+}],
+"loop": true,
+"name": &"green",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_whrv8")
+}],
+"loop": true,
+"name": &"red",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82k54"]
+atlas = ExtResource("2_gpd86")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jd6u5"]
+atlas = ExtResource("2_gpd86")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8si7"]
+atlas = ExtResource("2_gpd86")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qsbsx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82k54")
+}],
+"loop": true,
+"name": &"blue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jd6u5")
+}],
+"loop": true,
+"name": &"green",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8si7")
+}],
+"loop": true,
+"name": &"red",
+"speed": 5.0
+}]
+
+[node name="RythmMinigame" type="Node2D"]
+script = ExtResource("1_v5l17")
+
+[node name="PressTimer" type="Timer" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yd082")
+
+[node name="MessageLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -41.5
+offset_top = 99.0
+offset_right = 41.5
+offset_bottom = 122.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "PRESS THE ARROWS ON YOUR KEYBOARD WHEN IT'S GREEN"
+
+[node name="LeftArrow" type="AnimatedSprite2D" parent="CanvasLayer"]
+position = Vector2(678, 337)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_u56g1")
+animation = &"red"
+
+[node name="RightArrow" type="AnimatedSprite2D" parent="CanvasLayer"]
+position = Vector2(865, 339)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_8xnm5")
+animation = &"red"
+
+[node name="UpArrow" type="AnimatedSprite2D" parent="CanvasLayer"]
+position = Vector2(282, 347)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_v4inp")
+animation = &"red"
+
+[node name="DownArrow" type="AnimatedSprite2D" parent="CanvasLayer"]
+position = Vector2(479, 329)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_qsbsx")
+animation = &"red"

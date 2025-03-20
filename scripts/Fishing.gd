@@ -21,6 +21,20 @@ func _input(event):
 		elif event.keycode == KEY_ESCAPE:
 			_on_return_pressed()
 
+func pick_random_fish():
+	var fish_keys = fish_data.keys()
+	var weighted_list = []
+	
+	# Build a weighted list
+	for fish in fish_keys:
+		var weight = fish_data[fish].get("weight", 1)  # Default weight is 1 if missing
+		for i in range(weight):
+			weighted_list.append(fish)
+	
+	# Pick a fish from weighted list
+	return weighted_list[randi() % weighted_list.size()]
+
+
 func start_casting():
 	$CanvasLayer2/TIPS.disable_blinking()
 	$CanvasLayer2/FishCaughtLabel.hide()
@@ -32,8 +46,8 @@ func start_casting():
 	await get_tree().create_timer(randf_range(2, 5)).timeout
 
 	# Pick a random fish from JSON data
-	var fish_keys = fish_data.keys()
-	var fish_type = fish_keys[randi() % fish_keys.size()]
+	var fish_type = pick_random_fish()
+
 	$CanvasLayer2/FishCaughtLabel.hide()
 	print("A ", fish_type, " bit the bait!")
 
@@ -41,7 +55,7 @@ func start_casting():
 	start_minigame(fish_type)
 
 func start_minigame(fish_type):
-	$CanvasLayer2/FishCaughtLabel.text = "A fish is biting!"
+	$CanvasLayer2/FishCaughtLabel.text = "Something is biting!"
 	$CanvasLayer2/FishCaughtLabel.show()
 	await get_tree().create_timer(1.0).timeout  # Short delay before minigame starts
 	$CanvasLayer2/FishCaughtLabel.hide()
@@ -60,12 +74,12 @@ func _on_minigame_result(success, fish_type):
 	var fish_name = fish_info.get("name", "")
 	var value = fish_info.get("value", "")
 	if success:
-		$CanvasLayer2/FishCaughtLabel.text = "You caught a %s!" % fish_name
+		$CanvasLayer2/FishCaughtLabel.text = "You caught %s!" % fish_name
 		points += value
 		$CanvasLayer2/Points.text = "Points: %s" % points
 		print("Caught:", fish_name)
 	else:
-		$CanvasLayer2/FishCaughtLabel.text = "The %s escaped!" % fish_name
+		$CanvasLayer2/FishCaughtLabel.text = "It escaped!"
 		print(fish_name, "escaped!")
 
 	$CanvasLayer2/FishCaughtLabel.show()
