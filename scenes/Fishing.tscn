@@ -1,49 +1,26 @@
-[gd_scene load_steps=11 format=3 uid="uid://c1lu18m4ttg33"]
+[gd_scene load_steps=10 format=3 uid="uid://c1lu18m4ttg33"]
 
 [ext_resource type="Script" path="res://scripts/Fishing.gd" id="1_weva5"]
 [ext_resource type="Texture2D" uid="uid://ehqmruju3ugv" path="res://assets/Pond.png" id="2_svh5a"]
+[ext_resource type="Script" path="res://scripts/TextBlink.gd" id="2_sxem7"]
 [ext_resource type="Texture2D" uid="uid://xvkfb6vyj4mh" path="res://assets/Fisher.png" id="3_r7jdk"]
 [ext_resource type="Shader" path="res://assets/vhs.gdshader" id="4_lsory"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ptt11"]
 bg_color = Color(0, 0, 0, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vsca6"]
-atlas = ExtResource("3_r7jdk")
-region = Rect2(64, 0, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_y1cin"]
 atlas = ExtResource("3_r7jdk")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kl8cm"]
-atlas = ExtResource("3_r7jdk")
-region = Rect2(32, 0, 32, 32)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_ob8mf"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vsca6")
-}],
-"loop": true,
-"name": &"caught",
-"speed": 5.0
-}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_y1cin")
 }],
 "loop": true,
 "name": &"fish",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kl8cm")
-}],
-"loop": true,
-"name": &"idle",
 "speed": 5.0
 }]
 
@@ -99,13 +76,31 @@ text = "A FISH BIT THE BAIT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TIPS" type="Label" parent="CanvasLayer2"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -151.0
+offset_top = -124.0
+offset_right = 151.0
+offset_bottom = -79.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 32
+text = "PRESS SPACE TO FISH"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_sxem7")
+
 [node name="Pond" type="Sprite2D" parent="."]
-position = Vector2(420, 353)
+position = Vector2(574, 361)
 scale = Vector2(6, 6.164)
 texture = ExtResource("2_svh5a")
 
 [node name="Fisher" type="AnimatedSprite2D" parent="."]
-position = Vector2(249, 274)
+position = Vector2(403, 282)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_ob8mf")
 animation = &"fish"

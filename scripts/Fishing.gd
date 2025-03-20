@@ -20,9 +20,10 @@ func _input(event):
 			_on_return_pressed()
 
 func start_casting():
+	$CanvasLayer2/TIPS.disable_blinking()
 	$CanvasLayer2/FishCaughtLabel.hide()
 	is_casting = true
-	$CanvasLayer2/FishCaughtLabel.text = "Casting line!"
+	$CanvasLayer2/FishCaughtLabel.text = "Fishing..."
 	$CanvasLayer2/FishCaughtLabel.show()
 
 	# Simulate waiting for a fish (randomized time)
@@ -63,6 +64,7 @@ func _on_minigame_result(success, fish_type):
 		print(fish_name, "escaped!")
 
 	$CanvasLayer2/FishCaughtLabel.show()
+	$CanvasLayer2/TIPS.enable_blinking()
 	is_casting = false
 
 func _on_return_pressed():

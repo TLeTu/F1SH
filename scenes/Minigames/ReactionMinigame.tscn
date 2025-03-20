@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://ca8082klyxopl"]
+[gd_scene load_steps=3 format=3 uid="uid://ca8082klyxopl"]
 
 [ext_resource type="Script" path="res://scripts/Minigames/ReactionMinigame.gd" id="1_vcrk3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yd082"]
+bg_color = Color(0, 0, 0, 1)
 
 [node name="ReactionMinigame" type="Node2D"]
 script = ExtResource("1_vcrk3")
@@ -8,6 +11,14 @@ script = ExtResource("1_vcrk3")
 [node name="Timer" type="Timer" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yd082")
 
 [node name="MessageLabel" type="Label" parent="CanvasLayer"]
 anchors_preset = 5
