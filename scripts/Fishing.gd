@@ -21,6 +21,7 @@ func _on_cast_button_pressed():
 	
 	is_casting = true
 	$CastButton.disabled = true
+	$CastButton.hide()
 	$FishCaughtLabel.text = "Casting line!"
 	$FishCaughtLabel.show()
 
@@ -51,16 +52,19 @@ func start_minigame(fish_type):
 		minigame_instance.minigame_result.connect(_on_minigame_result.bind(fish_type))
 
 func _on_minigame_result(success, fish_type):
+	var fish_info = fish_data.get(fish_type, {})
+	var fish_name = fish_info.get("name", "")
 	if success:
-		$FishCaughtLabel.text = "You caught a %s!" % fish_type
-		print("Caught:", fish_type)
+		$FishCaughtLabel.text = "You caught a %s!" % fish_name
+		print("Caught:", fish_name)
 	else:
-		$FishCaughtLabel.text = "The %s escaped!" % fish_type
-		print(fish_type, "escaped!")
+		$FishCaughtLabel.text = "The %s escaped!" % fish_name
+		print(fish_name, "escaped!")
 
 	$FishCaughtLabel.show()
 	is_casting = false
 	$CastButton.disabled = false
+	$CastButton.show()
 
 func _on_return_button_pressed():
 	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
