@@ -1,0 +1,8 @@
+{
+	"small_fish": {
+		"name": "Small Fish",
+		"difficulty": 1,
+		"value": 5,
+		"minigame": "res://scenes/Minigames/ReactionMinigame.tscn"
+	}
+}
