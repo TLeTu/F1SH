@@ -2,9 +2,11 @@ extends Node2D
 
 var is_casting = false
 var fish_data = {}
+var points = 0
 
 func _ready():
 	fish_data = load_fish_data()
+	$CanvasLayer2/Points.text = "Points: %s" % points
 	$CanvasLayer2/FishCaughtLabel.hide()
 
 func load_fish_data():
@@ -56,8 +58,11 @@ func start_minigame(fish_type):
 func _on_minigame_result(success, fish_type):
 	var fish_info = fish_data.get(fish_type, {})
 	var fish_name = fish_info.get("name", "")
+	var value = fish_info.get("value", "")
 	if success:
 		$CanvasLayer2/FishCaughtLabel.text = "You caught a %s!" % fish_name
+		points += value
+		$CanvasLayer2/Points.text = "Points: %s" % points
 		print("Caught:", fish_name)
 	else:
 		$CanvasLayer2/FishCaughtLabel.text = "The %s escaped!" % fish_name
