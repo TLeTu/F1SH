@@ -1,11 +1,11 @@
-extends Control
+extends Node2D
 
 signal minigame_result(success)
 
 var can_click := false
 
 func _ready():
-	$MessageLabel.text = "Get Ready..."
+	$CanvasLayer/MessageLabel.text = "Get Ready..."
 	
 	# Random delay (0.5 - 3 seconds)
 	var wait_time = randf_range(0.5, 3.0)
@@ -14,7 +14,7 @@ func _ready():
 
 	# Enable clicking
 	can_click = true
-	$MessageLabel.text = "Click Now!"
+	$CanvasLayer/MessageLabel.text = "Click Now!"
 
 func _input(event):
 	if event is InputEventMouseButton and event.pressed:
