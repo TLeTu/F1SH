@@ -9,3 +9,4 @@ You will have points, each game give you a number of points.
 Base on the amount of points you have, the minigames will get harder.
 When you fail a minigame you will get jumpscared, but it doesn't happen all the time, but the chance of it happenning will increase base on your points.
  
+DEMO: https://imamonke.itch.io/f1h
