@@ -1,7 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://lvy11ptqadlc"]
+[gd_scene load_steps=24 format=3 uid="uid://lvy11ptqadlc"]
 
 [ext_resource type="Script" path="res://scripts/Minigames/RythmMinigame.gd" id="1_v5l17"]
 [ext_resource type="Texture2D" uid="uid://b1qqfrw4wiymn" path="res://assets/arrows.png" id="2_gpd86"]
+[ext_resource type="AudioStream" uid="uid://b1oer0jkc6hy6" path="res://assets/glitch-scream-305035.mp3" id="3_7ksks"]
+[ext_resource type="Texture2D" uid="uid://dw686w5fow5eq" path="res://assets/Scare.png" id="3_ubtt5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yd082"]
 bg_color = Color(0, 0, 0, 1)
@@ -162,6 +164,21 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxs56"]
+atlas = ExtResource("3_ubtt5")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b8o3b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxs56")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="RythmMinigame" type="Node2D"]
 script = ExtResource("1_v5l17")
 
@@ -212,3 +229,24 @@ position = Vector2(479, 329)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_qsbsx")
 animation = &"red"
+
+[node name="ScareSprite" type="AnimatedSprite2D" parent="CanvasLayer"]
+z_index = 1
+position = Vector2(568, 331)
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_b8o3b")
+
+[node name="FlashScreen" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 1)
+
+[node name="Scare" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_7ksks")
+volume_db = 12.0
+
+[node name="FlashTimer" type="Timer" parent="."]

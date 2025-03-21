@@ -1,7 +1,24 @@
-[gd_scene load_steps=8 format=3 uid="uid://ca8082klyxopl"]
+[gd_scene load_steps=12 format=3 uid="uid://ca8082klyxopl"]
 
 [ext_resource type="Script" path="res://scripts/Minigames/ReactionMinigame.gd" id="1_vcrk3"]
 [ext_resource type="Texture2D" uid="uid://d3nm1y1h8qxe5" path="res://assets/Btn.png" id="2_vpm47"]
+[ext_resource type="AudioStream" uid="uid://b1oer0jkc6hy6" path="res://assets/glitch-scream-305035.mp3" id="3_1188s"]
+[ext_resource type="Texture2D" uid="uid://dw686w5fow5eq" path="res://assets/Scare.png" id="4_4v31d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpobh"]
+atlas = ExtResource("4_4v31d")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_268px"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpobh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3wxm8"]
 atlas = ExtResource("2_vpm47")
@@ -52,14 +69,20 @@ script = ExtResource("1_vcrk3")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer"]
+[node name="ScareSprite" type="AnimatedSprite2D" parent="CanvasLayer"]
 z_index = 1
+position = Vector2(568, 331)
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_268px")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer"]
 position = Vector2(580, 358)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_k3l8s")
 animation = &"red"
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
+z_index = -1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -78,3 +101,18 @@ offset_bottom = 122.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 32
 text = "PRESS WHEN IT'S GREEN"
+
+[node name="FlashScreen" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 1)
+
+[node name="Scare" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_1188s")
+volume_db = 12.0
+
+[node name="FlashTimer" type="Timer" parent="."]

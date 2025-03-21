@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://c1lu18m4ttg33"]
+[gd_scene load_steps=12 format=3 uid="uid://c1lu18m4ttg33"]
 
 [ext_resource type="Script" path="res://scripts/Fishing.gd" id="1_weva5"]
 [ext_resource type="Texture2D" uid="uid://ehqmruju3ugv" path="res://assets/Pond.png" id="2_svh5a"]
 [ext_resource type="Script" path="res://scripts/TextBlink.gd" id="2_sxem7"]
 [ext_resource type="Texture2D" uid="uid://xvkfb6vyj4mh" path="res://assets/Fisher.png" id="3_r7jdk"]
 [ext_resource type="Shader" path="res://assets/vhs.gdshader" id="4_lsory"]
+[ext_resource type="AudioStream" uid="uid://chbjiff2wpwkt" path="res://assets/8-bit-explosion-95847.mp3" id="6_arwg8"]
+[ext_resource type="AudioStream" uid="uid://pnv0a7ct0upd" path="res://assets/8-bit-powerup-6768.mp3" id="7_5po0c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ptt11"]
 bg_color = Color(0, 0, 0, 1)
@@ -125,3 +127,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="Bite" type="AudioStreamPlayer2D" parent="Sounds"]
+position = Vector2(570, 354)
+stream = ExtResource("6_arwg8")
+volume_db = -30.705
+
+[node name="Caught" type="AudioStreamPlayer2D" parent="Sounds"]
+position = Vector2(570, 355)
+stream = ExtResource("7_5po0c")
+volume_db = -30.705

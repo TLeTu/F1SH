@@ -7,8 +7,18 @@ var current_index = 0  # Track the player's progress
 var can_press = false  # Flag to allow/disallow input
 var input_map = {KEY_LEFT: "left", KEY_RIGHT: "right", KEY_UP: "up", KEY_DOWN: "down"}
 var arrow_nodes = {}  # Dictionary to store arrow nodes
+var player_points = 0  # Will be set when minigame starts
 
-func _ready():
+func start_minigame(points):
+	player_points = points  # Store player's current points
+	$PressTimer.timeout.connect(_on_PressTimer_timeout)
+	$CanvasLayer/ScareSprite.visible = false
+	$CanvasLayer/MessageLabel.show()
+	$CanvasLayer/LeftArrow.visible = true
+	$CanvasLayer/RightArrow.visible = true
+	$CanvasLayer/UpArrow.visible = true
+	$CanvasLayer/DownArrow.visible = true
+	
 	# Store the arrow nodes for easy access
 	arrow_nodes = {
 		"left": $CanvasLayer/LeftArrow,
@@ -21,13 +31,17 @@ func _ready():
 	start_sequence()
 
 func generate_sequence():
-	var num_presses = randi_range(6, 14)  # Random number of required presses
-	var min_interval = 0.2  # Minimum time between presses
-	var max_interval = 1.0  # Maximum time between presses
+	var base_length = 6 + min(player_points / 50, 6)  # Increase length with score
+	var num_presses = randi_range(base_length, base_length + 4)
+	
+	var min_interval = max(0.2, 0.5 - player_points * 0.001)  # Faster as points increase
+	var max_interval = max(0.6, 1.2 - player_points * 0.002)
+	var fakeout_chance = min(0.2 + player_points * 0.0015, 0.5)  # Max 50% fake-outs
 
+	sequence.clear()
 	for i in range(num_presses):
 		var random_arrow = ["left", "right", "up", "down"].pick_random()
-		var is_fakeout = randf() < 0.3  # 30% chance to be a fake-out
+		var is_fakeout = randf() < fakeout_chance
 		
 		sequence.append({
 			"arrow": random_arrow,
@@ -61,8 +75,7 @@ func process_next_arrow():
 		else:
 			arrow_nodes[arrow_name].play("green")  # Real input required
 			can_press = true  # Allow player input
-			$PressTimer.start(randf_range(0.5, 1.0))  # Reaction time window
-			$PressTimer.timeout.connect(_on_PressTimer_timeout)
+			$PressTimer.start(randf_range(0.7, 1.0))  # Reaction time window
 
 func _input(event):
 	if event is InputEventKey and event.pressed:
@@ -94,5 +107,48 @@ func win_minigame():
 	queue_free()
 
 func lose_minigame():
+	# **Jumpscare now has a random chance of triggering on failure**
+	var jumpscare_chance = min(0.9, 0.3 + player_points * 0.01)  # 50% → 90% chance
+	if randf() < jumpscare_chance:
+		_trigger_jumpscare()
+	else:
+		print("Failed! No jumpscare this time.")
+		minigame_result.emit(false)
+		queue_free()
+
+func _trigger_jumpscare():
+	print("Failed! Jumpscare triggered.")
 	minigame_result.emit(false)
-	queue_free()
+
+	# Hide UI elements
+	$CanvasLayer/ScareSprite.visible = true
+	$CanvasLayer/MessageLabel.hide()
+	$CanvasLayer/LeftArrow.visible = false
+	$CanvasLayer/RightArrow.visible = false
+	$CanvasLayer/UpArrow.visible = false
+	$CanvasLayer/DownArrow.visible = false
+	
+	# Play jumpscare sound
+	$Scare.play()
+
+	# Start the blinking effect while the sound is playing
+	await flash_screen_blink()
+
+	$Scare.stop()
+	queue_free()  # Remove minigame after jumpscare
+
+func flash_screen_blink():
+	var flash = $CanvasLayer/FlashScreen  # Reference the ColorRect
+	flash.visible = true
+
+	var blink_interval = 0.05  # Speed of blinking (adjustable)
+	var blink_duration = 0.5  # Total time the blinking effect should last
+	var elapsed_time = 0.0  # Track how long it's been blinking
+
+	while elapsed_time < blink_duration:
+		flash.visible = not flash.visible  # Toggle visibility
+		await get_tree().create_timer(blink_interval).timeout
+		elapsed_time += blink_interval  # Increment elapsed time
+
+	# Ensure the screen ends with no red flash
+	flash.visible = false

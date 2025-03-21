@@ -1,19 +1,19 @@
 {
 	"button": {
 		"name": "a Button",
-		"value": 5,
+		"value": 10,
 		"minigame": "res://scenes/Minigames/ReactionMinigame.tscn",
 		"weight": 1
 	},
 	"mouse": {
 		"name": "a Mouse",
-		"value": 8,
+		"value": 15,
 		"minigame": "res://scenes/Minigames/ButtonSmashMinigame.tscn",
 		"weight": 1
 	}, 
 	"arrows": {
 		"name": "a bunch of Arrows",
-		"value": 11,
+		"value": 20,
 		"minigame": "res://scenes/Minigames/RythmMinigame.tscn",
 		"weight": 1
 	},
