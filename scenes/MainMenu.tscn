@@ -55,14 +55,17 @@ vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 7
 anchor_left = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-offset_left = -55.5
-offset_top = 476.0
-offset_right = 55.5
-offset_bottom = 548.0
+anchor_bottom = 1.0
+offset_left = -227.0
+offset_top = -132.0
+offset_right = 227.0
+offset_bottom = -60.0
 grow_horizontal = 2
+grow_vertical = 0
 theme_override_font_sizes/font_size = 52
 text = "PLAY WITH AUDIO"
 horizontal_alignment = 1
