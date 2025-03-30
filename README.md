@@ -1,4 +1,8 @@
 # F1$H
+ 
+GAMEPLAY DEMO: https://imamonke.itch.io/f1h
+
+
 A fishing minigame where each time you caught a fish you have to play through a minigame to get that fish.
 There will be 3 minigames:
 1. A reaction game where you have to click a button when it turn green.
@@ -8,5 +12,3 @@ There will be 3 minigames:
 You will have points, each game give you a number of points.
 Base on the amount of points you have, the minigames will get harder.
 When you fail a minigame you will get jumpscared, but it doesn't happen all the time, but the chance of it happenning will increase base on your points.
- 
-DEMO: https://imamonke.itch.io/f1h
